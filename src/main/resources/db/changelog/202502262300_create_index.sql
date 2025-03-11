@@ -1,0 +1,1 @@
+CREATE INDEX order_product_order_fki ON x6order.order_product(order_id);
