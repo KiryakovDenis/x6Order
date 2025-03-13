@@ -17,7 +17,6 @@ public class RestTemplateLogger implements ClientHttpRequestInterceptor {
     private static final String LOGGING_ERROR_MESSAGE = "Ошбика логирования исходящего запроса";
     private static final String EMPTY_VALUE = "<<EMPTY>>";
 
-
     @Override
     public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
         long startTime = System.currentTimeMillis();
@@ -25,18 +24,10 @@ public class RestTemplateLogger implements ClientHttpRequestInterceptor {
         ClientHttpResponse response = null;
         try {
             response = execution.execute(request, body);
+            responseData = handleResponseData(response);
 
-            try {
-                responseData = getResponseData(response);
-            } catch (Exception e) {
-                log.warn(LOGGING_ERROR_MESSAGE, e);
-            }
         } catch (Exception e) {
-            try {
-                responseData = getResponseErrorData(e);
-            } catch (Exception exception) {
-                log.warn(LOGGING_ERROR_MESSAGE, exception);
-            }
+            responseData = handleResponseData(e);
 
         } finally {
             long stopTime = System.currentTimeMillis();
@@ -50,6 +41,24 @@ public class RestTemplateLogger implements ClientHttpRequestInterceptor {
         }
 
         return response;
+    }
+
+    private String handleResponseData(ClientHttpResponse response) throws Exception {
+        try {
+            return getResponseData(response);
+        } catch (Exception e) {
+            log.warn(LOGGING_ERROR_MESSAGE, e);
+            throw e;
+        }
+    }
+
+    private String handleResponseData(Exception e) {
+        try {
+            return getResponseErrorData(e);
+        } catch (Exception exception) {
+            log.warn(LOGGING_ERROR_MESSAGE, exception);
+            throw exception;
+        }
     }
 
     private String getResponseData(ClientHttpResponse response) throws IOException {

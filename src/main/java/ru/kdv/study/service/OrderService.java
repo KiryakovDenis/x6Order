@@ -77,15 +77,6 @@ public class OrderService {
                         .map(String::valueOf)
                         .collect(Collectors.joining(", "));
 
-        /*String message =
-                productService.productExist(orderPositionList.stream()
-                        .map(OrderProduct::getId).toList()
-                ).stream()
-                        .filter(productExist -> !productExist.getIsExist())
-                        .map(ProductExist::getId)
-                        .map(String::valueOf)
-                        .collect(Collectors.joining(", "));*/
-
         if (!message.isEmpty()) {
             throw BadRequestException.create(new StringJoiner("\n")
                     .add("Товары с указанными идентификаторами - не существуют: ")
@@ -93,5 +84,4 @@ public class OrderService {
                     .toString());
         }
     }
-
 }

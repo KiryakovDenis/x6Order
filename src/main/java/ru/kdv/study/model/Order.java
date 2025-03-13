@@ -12,10 +12,10 @@ import java.util.List;
 @Builder
 @Getter
 public class Order {
-    private  Long id;
-    private  String orderNumber;
-    private  LocalDate orderDate;
-    private  Long userId;
-    private  LocalDateTime createDate;
+    private Long id;
+    private String orderNumber;
+    private LocalDate orderDate;
+    private Long userId;
+    private LocalDateTime createDate;
     private List<OrderProduct> orderPositionList;
 }
