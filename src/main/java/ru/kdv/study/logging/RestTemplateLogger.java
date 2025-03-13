@@ -5,7 +5,6 @@ import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
-import org.springframework.util.StreamUtils;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -18,7 +17,7 @@ public class RestTemplateLogger implements ClientHttpRequestInterceptor {
     private static final String EMPTY_VALUE = "<<EMPTY>>";
 
     @Override
-    public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
+    public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) {
         long startTime = System.currentTimeMillis();
         String responseData = null;
         ClientHttpResponse response = null;
