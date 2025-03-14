@@ -11,9 +11,8 @@ import ru.kdv.study.x6Order.repository.mapper.OrderMapper;
 @AllArgsConstructor
 public class OrderRepository {
 
-    private static String INSERT = """
-            INSERT
-              INTO x6order."order" (order_number, order_date, user_id) 
+    private static final String INSERT = """
+            INSERT INTO x6order."order" (order_number, order_date, user_id)
             VALUES (:order_number, :order_date, :user_id)
             RETURNING *
             """;

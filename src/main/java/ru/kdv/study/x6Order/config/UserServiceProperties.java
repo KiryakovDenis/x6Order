@@ -6,11 +6,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConfigurationProperties(prefix="product-service")
+@ConfigurationProperties(prefix="user-service")
 @Getter
 @Setter
-public class ProductServiceConfig {
+public class UserServiceProperties {
     private String baseUrl;
-    private Long readTimeout;
-    private Long connectionTimeout;
 }

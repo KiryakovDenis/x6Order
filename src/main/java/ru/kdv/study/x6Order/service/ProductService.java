@@ -3,7 +3,7 @@ package ru.kdv.study.x6Order.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import ru.kdv.study.x6Order.config.ProductServiceConfig;
+import ru.kdv.study.x6Order.config.ProductServiceProperties;
 import ru.kdv.study.x6Order.Exception.ExternalServiceException;
 import ru.kdv.study.x6Order.model.ProductExist;
 
@@ -15,14 +15,14 @@ import java.util.StringJoiner;
 @RequiredArgsConstructor
 public class ProductService {
     private final RestTemplate restTemplate;
-    private final ProductServiceConfig productServiceConfig;
+    private final ProductServiceProperties productServiceConfig;
 
     private static final String PRODUCT_EXIST_URL = "/product/exist";
 
     public List<ProductExist> productExist(final List<Long> ids) {
         ProductExist[] productExists;
         try {
-            productExists = restTemplate.postForObject(buildProductUrl(PRODUCT_EXIST_URL), ids, ProductExist[].class);
+            productExists = restTemplate.postForObject(buildProductUrl(), ids, ProductExist[].class);
         } catch (Exception e) {
             throw ExternalServiceException.create(new StringJoiner("/n")
                     .add("ProductService")
@@ -38,7 +38,7 @@ public class ProductService {
         }
     }
 
-    private String buildProductUrl(final String endpoint) {
-        return productServiceConfig.getBaseUrl() + endpoint;
+    private String buildProductUrl() {
+        return productServiceConfig.getBaseUrl() + PRODUCT_EXIST_URL;
     }
 }

@@ -29,12 +29,8 @@ springdoc:
       version: 1.0.0
       contact:
         name: Kiryakov Denis
-        email: KiryakovDenis@mail.ru
+        email: mail@mail.ru
 user-service:
   base-url: ${USER_SERVICE_URL:http://localhost:8085/api/v1}
-  read-timeout: ${USER_SERVICE_READ_TIMEOUT:1000}
-  connection-timeout: ${USER_SERVICE_CONNECTION_TIMEOUT:1000}
 product-service:
   base-url: ${USER_SERVICE_URL:http://localhost:8086/api/v1}
-  read-timeout: ${USER_SERVICE_READ_TIMEOUT:1000}
-  connection-timeout: ${USER_SERVICE_CONNECTION_TIMEOUT:1000}

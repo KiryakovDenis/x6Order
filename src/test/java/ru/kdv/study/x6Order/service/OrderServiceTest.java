@@ -71,7 +71,7 @@ public class OrderServiceTest {
                         .map(OrderProduct::getProductId)
                         .toList())
         ).thenReturn(validOrder.getOrderPositionList().stream()
-                .map(orderProduct -> {return new ProductExist(orderProduct.getId(), true);})
+                .map(orderProduct -> new ProductExist(orderProduct.getId(), true))
                 .toList()
         );
 
@@ -99,9 +99,7 @@ public class OrderServiceTest {
     @Test
     @DisplayName("Валидация пустого номера заказа")
     public void validateEmptyNumberOrder_checkBadRequestException() {
-        BadRequestException badRequestException = assertThrows(BadRequestException.class, () -> {
-            orderService.createOrder(emptyNumberOrder);
-        });
+        BadRequestException badRequestException = assertThrows(BadRequestException.class, () -> orderService.createOrder(emptyNumberOrder));
     }
 
     private Order emptyOrderDateOrder = Order.builder()
@@ -116,9 +114,7 @@ public class OrderServiceTest {
     @Test
     @DisplayName("Валидация пустой даты заказа")
     public void validateEmptyOrderDate_checkBadRequestException() {
-        BadRequestException badRequestException = assertThrows(BadRequestException.class, () -> {
-            orderService.createOrder(emptyOrderDateOrder);
-        });
+        BadRequestException badRequestException = assertThrows(BadRequestException.class, () -> orderService.createOrder(emptyOrderDateOrder));
     }
 
     private Order emptyUserId = Order.builder()
@@ -133,9 +129,7 @@ public class OrderServiceTest {
     @Test
     @DisplayName("Валидация пустого значения userId")
     public void validateEmptyUserId_checkBadRequestException() {
-        BadRequestException badRequestException = assertThrows(BadRequestException.class, () -> {
-            orderService.createOrder(emptyUserId);
-        });
+        BadRequestException badRequestException = assertThrows(BadRequestException.class, () -> orderService.createOrder(emptyUserId));
     }
 
     private Order emptyOrderPostionList = Order.builder()
@@ -150,8 +144,6 @@ public class OrderServiceTest {
     @Test
     @DisplayName("Валидация пустого списка товаров")
     public void validateEmptyOrderPositionList_checkBadRequestException() {
-        BadRequestException badRequestException = assertThrows(BadRequestException.class, () -> {
-            orderService.createOrder(emptyOrderPostionList);
-        });
+        BadRequestException badRequestException = assertThrows(BadRequestException.class, () -> orderService.createOrder(emptyOrderPostionList));
     }
 }

@@ -30,7 +30,7 @@ public class OrderService {
 
         Order resultOrder = orderRepository.insert(order);
 
-        order.getOrderPositionList().forEach(orderProduct -> {orderProduct.setOrderId(resultOrder.getId());});
+        order.getOrderPositionList().forEach(orderProduct -> orderProduct.setOrderId(resultOrder.getId()));
 
         orderProductRepository.insertAll(order.getOrderPositionList());
 

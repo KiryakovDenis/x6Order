@@ -4,14 +4,14 @@ import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import ru.kdv.study.x6Order.config.UserServiceConfig;
+import ru.kdv.study.x6Order.config.UserServiceProperties;
 
 @Service
 @AllArgsConstructor
 public class UserService {
 
     private RestTemplate restTemplate;
-    private UserServiceConfig userServiceConfig;
+    private UserServiceProperties userServiceConfig;
 
     private static final String URL_USER_EXIST = "/user/exist/%d";
 

@@ -13,14 +13,15 @@ import java.time.Duration;
 @RequiredArgsConstructor
 public class RestTemplateConfig {
 
-    private final UserServiceConfig userServiceConfig;
+    private static final Long READ_TIMEOUT = 10000L;
+    private static final Long CONNECTION_TIMEOUT = 10000L;
 
     @Bean
     public RestTemplate getRestTemplate(RestTemplateBuilder restTemplateBuilder) {
 
         return restTemplateBuilder
-                .readTimeout(Duration.ofMillis(userServiceConfig.getReadTimeout()))
-                .connectTimeout(Duration.ofMillis(userServiceConfig.getConnectionTimeout()))
+                .readTimeout(Duration.ofMillis(READ_TIMEOUT))
+                .connectTimeout(Duration.ofMillis(CONNECTION_TIMEOUT))
                 .interceptors(new RestTemplateLogger())
                 .build();
     }
