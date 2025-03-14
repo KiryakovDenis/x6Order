@@ -48,8 +48,6 @@ bin/
 .idea/
 
 ### Gradle ###
-/build.gradle
 /.gradle/
 /gradlew
 /gradle/
-/settings.gradle
