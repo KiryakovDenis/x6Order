@@ -115,7 +115,7 @@ public class OrderServiceTest {
 
     @Test
     @DisplayName("Валидация пустой даты заказа")
-    public void validateЕmptyOrderDateOrder_checkBadRequestException() {
+    public void validateEmptyOrderDate_checkBadRequestException() {
         BadRequestException badRequestException = assertThrows(BadRequestException.class, () -> {
             orderService.createOrder(emptyOrderDateOrder);
         });
