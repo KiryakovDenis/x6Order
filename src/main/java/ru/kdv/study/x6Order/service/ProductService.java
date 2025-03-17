@@ -15,7 +15,7 @@ import java.util.StringJoiner;
 @RequiredArgsConstructor
 public class ProductService {
     private final RestTemplate restTemplate;
-    private final ProductServiceProperties productServiceConfig;
+    private final ProductServiceProperties productServiceProperties;
 
     private static final String PRODUCT_EXIST_URL = "/product/exist";
 
@@ -39,6 +39,6 @@ public class ProductService {
     }
 
     private String buildProductUrl() {
-        return productServiceConfig.getBaseUrl() + PRODUCT_EXIST_URL;
+        return productServiceProperties.getBaseUrl() + PRODUCT_EXIST_URL;
     }
 }
