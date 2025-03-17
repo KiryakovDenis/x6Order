@@ -14,7 +14,7 @@ import java.util.StringJoiner;
 @AllArgsConstructor
 public class OrderProductRepository {
 
-    private final static String INSERT = """
+    private static final String INSERT = """
             INSERT INTO x6order.order_product (order_id, product_id, amount_product)
             VALUES(:order_id, :product_id, :amount_product)
             RETURNING *

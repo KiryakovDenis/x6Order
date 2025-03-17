@@ -6,6 +6,6 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class ServiceException {
+public class ServiceExceptionMessage {
     String message;
 }
