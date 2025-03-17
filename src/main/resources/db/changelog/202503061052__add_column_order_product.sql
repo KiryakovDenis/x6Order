@@ -1,0 +1,1 @@
+ALTER TABLE x6order.x6order.order_product ADD create_date TIMESTAMP WITHOUT time ZONE DEFAULT current_timestamp;
