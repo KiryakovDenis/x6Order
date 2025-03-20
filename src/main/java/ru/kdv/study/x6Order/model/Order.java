@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -16,7 +14,8 @@ import java.util.StringJoiner;
 @AllArgsConstructor
 @Builder
 @Getter
-public class Order implements Serializable {
+public class Order {
+    private static final long serialVersionUID = 2428278069154262067L;
     private Long id;
     private String orderNumber;
     private LocalDate orderDate;
@@ -48,8 +47,6 @@ public class Order implements Serializable {
                 this.userId,
                 createDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))
         );
-
-
 
         if (this.orderPositionList != null && !this.orderPositionList.isEmpty()) {
             StringJoiner stringJoiner = new StringJoiner(", ");

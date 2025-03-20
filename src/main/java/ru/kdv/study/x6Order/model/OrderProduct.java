@@ -3,15 +3,13 @@ package ru.kdv.study.x6Order.model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Data
 @AllArgsConstructor
 @Builder
-public class OrderProduct implements Serializable {
+public class OrderProduct {
     private Long id;
     private Long productId;
     private Long amountProduct;
