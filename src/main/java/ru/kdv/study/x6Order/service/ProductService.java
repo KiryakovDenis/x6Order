@@ -18,17 +18,15 @@ public class ProductService {
     private final ProductServiceProperties productServiceProperties;
 
     private static final String PRODUCT_EXIST_URL = "/product/exist";
+    private static final String PRODUCT_GET_BY_ID = "/product/%d";
 
     public List<ProductExist> productExist(final List<Long> ids) {
         ProductExist[] productExists;
         try {
-            productExists = restTemplate.postForObject(buildProductUrl(), ids, ProductExist[].class);
+            productExists = restTemplate.postForObject(buildProductUrl(PRODUCT_EXIST_URL), ids, ProductExist[].class);
         } catch (Exception e) {
-            throw ExternalServiceException.create(new StringJoiner("/n")
-                    .add("ProductService")
-                    .add(e.getMessage())
-                    .add(e.getCause().toString())
-                    .toString());
+            //TODO: Можно более подробно расписать исключения, которые возникают при работе со сторонним сервисом.
+            throw handleServiceException(e);
         }
 
         if (productExists != null ) {
@@ -38,7 +36,15 @@ public class ProductService {
         }
     }
 
-    private String buildProductUrl() {
-        return productServiceProperties.getBaseUrl() + PRODUCT_EXIST_URL;
+    private String buildProductUrl(final String serviceUrl) {
+        return productServiceProperties.getBaseUrl() + serviceUrl;
+    }
+
+    private ExternalServiceException handleServiceException(Exception e) {
+        return ExternalServiceException.create(new StringJoiner("/n")
+                .add("ProductService")
+                .add(e.getMessage())
+                .add(e.getCause().toString())
+                .toString());
     }
 }
