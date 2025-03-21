@@ -24,11 +24,8 @@ public class ProductService {
         try {
             productExists = restTemplate.postForObject(buildProductUrl(), ids, ProductExist[].class);
         } catch (Exception e) {
-            throw ExternalServiceException.create(new StringJoiner("/n")
-                    .add("ProductService")
-                    .add(e.getMessage())
-                    .add(e.getCause().toString())
-                    .toString());
+            //TODO: Можно более подробно расписать исключения, которые возникают при работе со сторонним сервисом.
+            throw handleServiceException(e);
         }
 
         if (productExists != null ) {
@@ -40,5 +37,13 @@ public class ProductService {
 
     private String buildProductUrl() {
         return productServiceProperties.getBaseUrl() + PRODUCT_EXIST_URL;
+    }
+
+    private ExternalServiceException handleServiceException(Exception e) {
+        return ExternalServiceException.create(new StringJoiner("/n")
+                .add("ProductService")
+                .add(e.getMessage())
+                .add(e.getCause().toString())
+                .toString());
     }
 }

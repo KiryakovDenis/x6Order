@@ -23,6 +23,7 @@ public class OrderService {
     private final UserService userService;
     private final ProductService productService;
     private final OrderProductRepository orderProductRepository;
+    private final NotificationService notificationService;
 
     @Transactional(rollbackFor = Exception.class)
     public Order createOrder(final Order order) {
@@ -33,6 +34,8 @@ public class OrderService {
         order.getOrderPositionList().forEach(orderProduct -> orderProduct.setOrderId(resultOrder.getId()));
 
         orderProductRepository.insertAll(order.getOrderPositionList());
+
+        notificationService.sendMessage(order);
 
         return resultOrder;
     }

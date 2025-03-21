@@ -8,6 +8,12 @@ spring:
     url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:x6order}
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD}
+  rabbitmq:
+    addresses:
+      - localhost:5672
+    username: ${RMQ_USERNAME:guest}
+    password: ${RMQ_PASSWORD}
+    virtual-host: x6notificationHost
 springdoc:
   swagger-ui:
     path: swagger-ui
@@ -19,6 +25,11 @@ springdoc:
       contact:
         name: Kiryakov Denis
         email: mail@mail.ru
+app:
+  rabbitmq:
+    queue: x6notification-queue
+    exchange: x6notification-exchange
+
 user-service:
   base-url: ${USER_SERVICE_URL:http://localhost:8085/api/v1}
 product-service:

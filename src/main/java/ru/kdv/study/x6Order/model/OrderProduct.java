@@ -3,7 +3,6 @@ package ru.kdv.study.x6Order.model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-
 import java.time.LocalDateTime;
 
 @Data
